@@ -40,9 +40,9 @@ apt-get update
 
 aptitude dist-upgrade -y
 
-cat "/media/vagrant/packages.list" | xargs aptitude install -y linux-headers-`uname -r`
+cat "/media/vagrant/setup/packages.list" | xargs aptitude install -y linux-headers-`uname -r`
 
-rsync -av "/media/vagrant/files/" /
+rsync -av "/media/vagrant/setup/files/" /
 
 ######
 # Configure
@@ -61,8 +61,8 @@ done
 a2ensite wmc.conf
 sed -i "s/www-data/vagrant/" /etc/apache2/envvars
 chown -R vagrant:vagrant /var/lib/apache2/
-ln -fs /media/vagrant/projects /var/www/wmc
-ln -fs /media/vagrant/projects /home/vagrant/projects
+ln -sfv /media/vagrant/projects /var/www/wmc
+ln -sfv /media/vagrant/projects /home/vagrant/projects
 
 # PEAR
 pear -q upgrade pear
