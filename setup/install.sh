@@ -49,7 +49,7 @@ rsync -av "/media/vagrant/setup/files/" /
 ######
 
 # PHP
-for module in extras apcu curl gd gmp imagick intl json mcrypt mysqli mysql mysqlnd pdo pdo_mysql pdo_sqlite readline sqlite tidy xsl; do 
+for module in extras apcu curl gd gmp imagick intl json mcrypt mysqli mysql mysqlnd pdo pdo_mysql pdo_sqlite readline tidy xsl; do
   php5enmod $module
 done
 sed -i "s/www-data/vagrant/" /etc/php5/fpm/pool.d/www.conf
@@ -69,6 +69,10 @@ pear -q upgrade pear
 pear -q channel-discover pear.phpunit.de
 pear -q channel-discover components.ez.no
 pear -q channel-discover pear.symfony.com
+
+service php5-fpm restart
+service apache2 restart
+service dnsmasq restart
 
 # wget -nv https://gist.githubusercontent.com/lavoiesl/3864795/raw/gitconfig -O /home/wmc/.gitconfig
 
