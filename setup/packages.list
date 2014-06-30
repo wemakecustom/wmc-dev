@@ -7,15 +7,15 @@ gettext
 git
 imagemagick
 libapache2-mod-fastcgi
-nodejs-legacy
 nodejs
+nodejs-legacy
 npm
 percona-server-server-5.6
-php-composer
 php-gettext
 php-pear
 php5-apcu
 php5-cli
+php5-composer
 php5-curl
 php5-dev
 php5-fpm
