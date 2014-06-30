@@ -42,6 +42,8 @@ aptitude dist-upgrade -y
 
 cat "/media/vagrant/setup/packages.list" | xargs aptitude install -y linux-headers-`uname -r`
 
+npm install -g bower
+
 rsync -av "/media/vagrant/setup/files/" /
 
 ######
