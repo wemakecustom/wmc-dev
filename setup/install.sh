@@ -3,8 +3,6 @@
 # http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-
-
 ######
 # Preinstall and custom repos
 ######
@@ -19,6 +17,9 @@ add-apt-repository -y ppa:ondrej/php5
 
 # PHP Composer
 add-apt-repository -y ppa:duggan/composer
+
+# NodeJs
+add-apt-repository -y ppa:chris-lea/node.js
 
 # Percona
 apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
@@ -39,11 +40,9 @@ apt-get update
 
 aptitude dist-upgrade -y
 
-cat "${DIR}/packages.list" | xargs aptitude install -y linux-headers-`uname -r` 
+cat "/media/vagrant/packages.list" | xargs aptitude install -y linux-headers-`uname -r`
 
-rsync -av "${DIR}/" /
-
-
+rsync -av "/media/vagrant/files/" /
 
 ######
 # Configure
@@ -53,11 +52,17 @@ rsync -av "${DIR}/" /
 for module in extras apcu curl gd gmp imagick intl json mcrypt mysqli mysql mysqlnd pdo pdo_mysql pdo_sqlite readline sqlite tidy xsl; do 
   php5enmod $module
 done
+sed -i "s/www-data/vagrant/" /etc/php5/fpm/pool.d/www.conf
 
 # Apache
 for module in rewrite alias actions vhost_alias setenvif proxy proxy_http; do
   a2enmod $module
 done
+a2ensite wmc.conf
+sed -i "s/www-data/vagrant/" /etc/apache2/envvars
+chown -R vagrant:vagrant /var/lib/apache2/
+ln -fs /media/vagrant/projects /var/www/wmc
+ln -fs /media/vagrant/projects /home/vagrant/projects
 
 # PEAR
 pear -q upgrade pear
@@ -68,9 +73,5 @@ pear -q channel-discover pear.symfony.com
 # wget -nv https://gist.githubusercontent.com/lavoiesl/3864795/raw/gitconfig -O /home/wmc/.gitconfig
 
 
-
-### TODO
-# DNSmasq
-# Apache sites
-# 
+#Change phpmyadmin
 
