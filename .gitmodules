@@ -1,0 +1,3 @@
+[submodule "setup/vagrant-provision-reboot"]
+	path = setup/vagrant-provision-reboot
+	url = https://github.com/exratione/vagrant-provision-reboot.git
