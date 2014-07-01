@@ -69,11 +69,11 @@ aptitude dist-upgrade -y
 # Install
 ######
 
-cat "/media/vagrant/setup/packages.list" | xargs aptitude install -y linux-headers-`uname -r`
+cat "/vagrant/setup/packages.list" | xargs aptitude install -y linux-headers-`uname -r`
 
 npm install -g bower less
 
-rsync -av "/media/vagrant/setup/files/" /
+rsync -av "/vagrant/setup/files/" /
 
 ######
 # Configure
