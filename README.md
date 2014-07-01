@@ -9,8 +9,8 @@ WeMakeCustom Vagrant
  3. `cd ~/Sites/wmc`
  4. `sudo ./setup/system.sh`
  5. `vagrant up`
-76. Move your projects in the projects folder, [respecting the hierarchy](#projects-hierarchy).
- 6. On the vagrant, run the configure script to personalize: `/vagrant/setup/configure.sh`.
+ 6. Move your projects in the projects folder, [respecting the hierarchy](#projects-hierarchy).
+ 7. On the vagrant, run the configure script to personalize: `/vagrant/setup/configure.sh`.
 
 ## Projects hierarchy
 
