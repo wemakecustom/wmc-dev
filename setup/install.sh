@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-# http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Stop on first error
+# http://www.davidpashley.com/articles/writing-robust-shell-scripts/#id2382181
+set -e
+
 
 ######
 # Preinstall and custom repos
