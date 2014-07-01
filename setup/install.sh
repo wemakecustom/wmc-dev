@@ -114,5 +114,9 @@ service dnsmasq restart
 
 # wget -nv https://gist.githubusercontent.com/lavoiesl/3864795/raw/gitconfig -O /home/wmc/.gitconfig
 
+#Color Promp
+sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/" /home/vagrant/.bashrc
+sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/" /root/.bashrc
+
 #Owner correction
 chown -R vagrant:vagrant /home/vagrant
