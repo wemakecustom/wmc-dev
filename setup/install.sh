@@ -31,6 +31,25 @@ echo "deb-src http://repo.percona.com/apt $(lsb_release -cs) main" >> /etc/apt/s
 echo percona-server-server-5.6 percona-server-server/root_password password root | debconf-set-selections
 echo percona-server-server-5.6 percona-server-server/root_password_again password root | debconf-set-selections
 
+# PhpMyAdmin
+# https://github.com/mauserrifle/vagrant-debian-shell/blob/master/install-phpmyadmin.sh
+echo 'phpmyadmin phpmyadmin/dbconfig-install boolean false' | debconf-set-selections
+echo 'phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2' | debconf-set-selections
+
+echo 'phpmyadmin phpmyadmin/app-password-confirm password root' | debconf-set-selections
+echo 'phpmyadmin phpmyadmin/mysql/admin-pass password root' | debconf-set-selections
+echo 'phpmyadmin phpmyadmin/password-confirm password root' | debconf-set-selections
+echo 'phpmyadmin phpmyadmin/setup-password password root' | debconf-set-selections
+echo 'phpmyadmin phpmyadmin/database-type select mysql' | debconf-set-selections
+echo 'phpmyadmin phpmyadmin/mysql/app-pass password root' | debconf-set-selections
+
+echo 'dbconfig-common dbconfig-common/mysql/app-pass password root' | debconf-set-selections
+echo 'dbconfig-common dbconfig-common/mysql/app-pass password' | debconf-set-selections
+echo 'dbconfig-common dbconfig-common/password-confirm password root' | debconf-set-selections
+echo 'dbconfig-common dbconfig-common/app-password-confirm password root' | debconf-set-selections
+echo 'dbconfig-common dbconfig-common/app-password-confirm password root' | debconf-set-selections
+echo 'dbconfig-common dbconfig-common/password-confirm password root' | debconf-set-selections
+
 
 
 ######
@@ -56,7 +75,6 @@ for module in extras apcu curl gd gmp imagick intl json mcrypt mysqli mysql mysq
 done
 sed -i "s/www-data/vagrant/" /etc/php5/fpm/pool.d/www.conf
 
-
 # Apache
 for module in rewrite alias actions vhost_alias setenvif proxy proxy_http; do
   a2enmod $module
@@ -79,6 +97,4 @@ service dnsmasq restart
 
 # wget -nv https://gist.githubusercontent.com/lavoiesl/3864795/raw/gitconfig -O /home/wmc/.gitconfig
 
-
-#Change phpmyadmin
 
