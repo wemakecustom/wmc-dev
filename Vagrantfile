@@ -6,6 +6,7 @@ file_to_disk = File.dirname(__FILE__) + '/data.vdi'
 Vagrant.configure("2") do |config|
   config.vm.box = "trusty32"  #Box Name
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box" #Box Location
+  config.vm.hostname = 'dev.wemakecustom.com'
 
   # https://github.com/kusnier/vagrant-persistent-storage
   # vagrant plugin install vagrant-persistent-storage
