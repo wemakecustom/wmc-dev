@@ -28,9 +28,9 @@ confirm() {
   return $?
 }
 
+if [ ! -e ~/.gitconfig ]; then
+  cp /vagrant/setup/configure/gitconfig ~/.gitconfig
+fi
 
-fullname="$(git config --global user.name)"
-email="$(git config --global user.email)"
-
-[[ -z "$fullname" ]] && fullname="$(prompt_value "What is your name ?" "$(git config --global user.name)")" && git config --global user.name "$fullname"
-[[ -z "$email" ]] && email="$(prompt_value "What is your email ?" "$(git config --global user.email)")" && git config --global user.email "$email"
+fullname="$(prompt_value "What is your full name ?" "$(git config --global user.name)")" && git config --global user.name "$fullname"
+email="$(prompt_value "What is your email ?" "$(git config --global user.email)")" && git config --global user.email "$email"

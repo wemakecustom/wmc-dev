@@ -104,13 +104,13 @@ ln -sfv /media/data/projects /home/vagrant/projects
 
 # PEAR
 pear -q upgrade pear
-pear list-channels | grep -qF pear.phpunit.de || pear -q channel-discover pear.phpunit.de
-pear list-channels | grep -qF components.ez.no || pear -q channel-discover components.ez.no
-pear list-channels | grep -qF pear.symfony.com || pear -q channel-discover pear.symfony.com
+for channel in pear.phpunit.de components.ez.no pear.symfony.com; do
+    pear list-channels | grep -qF $channel || pear -q channel-discover $channel
+done
 
-service php5-fpm restart
-service apache2 restart
-service dnsmasq restart
+for service in php5-fpm apache2 dnsmasq nfs-kernel-server; do
+    service $service restart
+done
 
 # wget -nv https://gist.githubusercontent.com/lavoiesl/3864795/raw/gitconfig -O /home/wmc/.gitconfig
 

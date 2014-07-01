@@ -4,22 +4,29 @@ WeMakeCustom Vagrant
 
 ## Installation
 
-Installation is a quick 3 step process:
+ 1. `git clone git@github.com:wemakecustom/vagrant-dev.git ~/Sites/wmc`
+ 2. `cd ~/Sites/wmc`
+ 3. sudo ./setup/system.sh
+ 4. `vagrant up`
+ 5. [Mount projects via NFS](#mount-projects-via-nfs)
+ 6. Move your projects in the projects folder, [respecting the hierarchy](#projects-hierarchy).
+ 7. On the vagrant, run the configure script to personalize: `/vagrant/setup/configure.sh`.
 
-1. git init
-2. git clone git@github.com:wemakecustom/vagrant-dev.git
-3. sudo ./setup/system.sh
-4. [Mount projects via NFS](#mount-projects-via-nfs)
-4. Move your projects in the projects folder. Please respect the following path : ./projects/client/project
+## Using your Vagrant
 
-## Vagrant common command
-
-     vagrant help          Get help
+    vagrant help          Get help
+    vagrant up            Starts and provisions the vagrant environment
+    vagrant halt          Stops the vagrant machine
+    vagrant ssh           Connects to machine via SSH
 
 ## MySQL & phpMyAdmin
     http://dev.wemakecustom.com/phpmyadmin/
     Login : root
     Password : root
+
+## Projects hierarchy
+
+The file structure is `./projects/CLIENT/PROJECT` and it translates to http://PROJECT.CLIENT.dev.wemakecustom.com/
 
 ## Mount projects via NFS
 
