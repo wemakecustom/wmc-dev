@@ -15,7 +15,7 @@ Installation is a quick 3 step process:
 
      vagrant help          Get help
      
-## phpMyAdmin
+## MySql & phpMyAdmin
     http://dev.wemakecustom.com/phpmyadmin/
     Login : root
     Password : root

@@ -114,4 +114,5 @@ service dnsmasq restart
 
 # wget -nv https://gist.githubusercontent.com/lavoiesl/3864795/raw/gitconfig -O /home/wmc/.gitconfig
 
-
+#Owner correction
+chown -R vagrant:vagrant /home/vagrant

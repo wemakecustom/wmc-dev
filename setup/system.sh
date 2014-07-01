@@ -9,7 +9,7 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-#VM Global Config
+# Update
 apt-get update -y
 apt-get upgrade -y
 
