@@ -13,13 +13,7 @@ Installation is a quick 3 step process:
 
 ## Vagrant common command
 
-     vagrant up           starts and provisions the vagrant environment
-     vagrant halt         stops the vagrant machine
-     vagrant suspend      suspends the machine
-     vagrant ssh          connects to machine via SSH
-     vagrant destroy      stops and deletes all traces of the vagrant machine
-     vagrant provision    provisions the vagrant machine
-     vagrant reload       restarts vagrant machine, loads new Vagrantfile configuration
-     vagrant status       outputs status of the vagrant machine
+     vagrant help          Get help
+
 
 
