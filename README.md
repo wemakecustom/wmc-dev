@@ -34,3 +34,13 @@ Vagrant will also mount it in `./projects` so you can access it locally.
     vagrant up            Starts and provisions the vagrant environment
     vagrant halt          Stops the vagrant machine
     vagrant ssh           Connects to machine via SSH
+
+## SSH config
+
+Instead of using `vagrant ssh` you may add an alias on your local machine:
+
+```bash
+vagrant ssh-config --host wmc-dev >> ~/.ssh/config
+```
+
+And then, you may simply `ssh wmc-dev`.
