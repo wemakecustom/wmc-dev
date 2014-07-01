@@ -44,9 +44,3 @@ vagrant ssh-config --host wmc-dev >> ~/.ssh/config
 ```
 
 And then, you may simply `ssh wmc-dev`.
-
-## Private key
-If  you need to connect to your vagrant without vagrant ssh command you will need the private key.
-You will find the private key in :
-
-    ~/.vagrant.d/insecure_private_key
