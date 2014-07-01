@@ -12,15 +12,18 @@ Vagrant.configure("2") do |config|
   # vagrant plugin install vagrant-persistent-storage
   config.persistent_storage.enabled = true
   config.persistent_storage.location = file_to_disk
-  config.persistent_storage.size = 5000
+  config.persistent_storage.size = 50000
   config.persistent_storage.mountname = 'data'
   config.persistent_storage.filesystem = 'ext4'
   config.persistent_storage.mountpoint = '/media/data'
-  config.persistent_storage.volgroupname = 'data'
+  config.persistent_storage.volgroupname = 'vg_data'
 
   config.vm.provider :virtualbox do |virtualbox|
-    virtualbox.customize ["modifyvm", :id, "--memory", "2048"]
-    virtualbox.customize ["modifyvm", :id, "--cpus", "2"] 
+    # Uncomment to start the VM with the GUI
+    # virtualbox.gui = true
+    virtualbox.name = "wmc-dev"
+    virtualbox.memory = 2048
+    virtualbox.cpus = 2
   end
 
   config.ssh.forward_agent = true
