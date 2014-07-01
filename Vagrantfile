@@ -22,6 +22,7 @@ Vagrant.configure("2") do |config|
     # Uncomment to start the VM with the GUI
     # virtualbox.gui = true
     virtualbox.name = "wmc-dev"
+    virtualbox.customize ["modifyvm", :id, "--ioapic", "on"]
     virtualbox.memory = 2048
     virtualbox.cpus = 2
   end
