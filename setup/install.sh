@@ -82,8 +82,15 @@ done
 a2ensite wmc.conf
 sed -i "s/www-data/vagrant/" /etc/apache2/envvars
 chown -R vagrant:vagrant /var/lib/apache2/
-ln -sfv /media/vagrant/projects /var/www/wmc
-ln -sfv /media/vagrant/projects /home/vagrant/projects
+
+[ -d /media/data/projects ] || mkdir /media/data/projects
+chown vagrant: /media/data/projects
+
+[ -e /var/www/wmc ] && rm /var/www/wmc
+ln -sfv /media/data/projects /var/www/wmc
+
+[ -e /home/vagrant/projects ] && rm /home/vagrant/projects
+ln -sfv /media/data/projects /home/vagrant/projects
 
 # PEAR
 pear -q upgrade pear

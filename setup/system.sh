@@ -19,3 +19,5 @@ apt-get install -y vim git
 #Vagrant
 apt-get install -y linux-headers-$(uname -r)
 apt-get install -y  virtualbox vagrant nfs-kernel-server nfs-common portmap
+
+vagrant plugin install vagrant-persistent-storage
