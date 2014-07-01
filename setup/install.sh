@@ -56,12 +56,6 @@ for module in extras apcu curl gd gmp imagick intl json mcrypt mysqli mysql mysq
 done
 sed -i "s/www-data/vagrant/" /etc/php5/fpm/pool.d/www.conf
 
-for path in "/etc/php5/fpm/php.ini" "/etc/php5/cli/php.ini"; do
-    sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 10M/" $path
-    sed -i "s/;date.timezone =/date.timezone = America\/Montreal/" $path
-    sed -i "s/memory_limit = 128M/memory_limit = 512M/" $path
-    sed -i "s/_errors = Off/_errors = On/" $path
-done
 
 # Apache
 for module in rewrite alias actions vhost_alias setenvif proxy proxy_http; do
