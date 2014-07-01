@@ -4,11 +4,12 @@ WeMakeCustom Vagrant
 
 ## Installation
 
- 1. `git clone git@github.com:wemakecustom/vagrant-dev.git ~/Sites/wmc`
- 2. `cd ~/Sites/wmc`
- 3. `sudo ./setup/system.sh`
- 4. `vagrant up`
- 5. Move your projects in the projects folder, [respecting the hierarchy](#projects-hierarchy).
+ 1. Activate in your Bios/EFI if not Intel vt/Amd-v 
+ 2. `git clone git@github.com:wemakecustom/vagrant-dev.git ~/Sites/wmc`
+ 3. `cd ~/Sites/wmc`
+ 4. `sudo ./setup/system.sh`
+ 5. `vagrant up`
+76. Move your projects in the projects folder, [respecting the hierarchy](#projects-hierarchy).
  6. On the vagrant, run the configure script to personalize: `/vagrant/setup/configure.sh`.
 
 ## Projects hierarchy
