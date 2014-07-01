@@ -1,10 +1,10 @@
 #!/bin/bash
 
-regex="/(?:wmc|projects)/([^/]+)/([^/]+)"
+regex="/(wmc|projects)/([^/]+)/([^/]+)"
 
 if [[ "$(pwd)" =~ $regex ]]; then
-    client=${BASH_REMATCH[1]}
-    project=${BASH_REMATCH[2]}
+    client=${BASH_REMATCH[2]}
+    project=${BASH_REMATCH[3]}
 
     database="${client}_${project}"
 
