@@ -12,6 +12,8 @@ Vagrant.configure("2") do |config|
     virtualbox.customize ["modifyvm", :id, "--cpus", "2"] 
   end
 
+  config.ssh.forward_agent = true
+
   config.vm.synced_folder ".", "/media/vagrant", :nfs => true
 
   config.vm.network :private_network, ip: "10.10.10.10"
