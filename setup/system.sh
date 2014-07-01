@@ -21,3 +21,4 @@ apt-get install -y linux-headers-$(uname -r)
 apt-get install -y virtualbox vagrant
 
 vagrant plugin install vagrant-persistent-storage
+vagrant plugin install vagrant-host-shell

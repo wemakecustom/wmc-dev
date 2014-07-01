@@ -31,4 +31,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell, :path => "setup/install.sh"
 
+  config.vm.provision :host_shell do |host_shell|
+    host_shell.inline = '[ -d projects ] || mkdir projects; mount | grep -qF dev.wemakecustom.com || sudo mount dev.wemakecustom.com:/media/data/projects projects'
+  end
+
 end
