@@ -1,9 +1,10 @@
 <?php
 
-/* Authentication type */
 $cfg['Servers'][$i]['auth_type'] = 'config';
-/* Server parameters */
-$cfg['Servers'][$i]['host'] = 'localhost';
-/* User for advanced features */
-$cfg['Servers'][$i]['controluser'] = 'root';
-$cfg['Servers'][$i]['controlpass'] = 'root';
+$cfg['Servers'][$i]['user'] = 'root';
+$cfg['Servers'][$i]['password'] = 'root';
+$cfg['Servers'][$i]['AllowDeny']['order'] = 'deny,allow';
+$cfg['Servers'][$i]['AllowDeny']['rules'] = array(
+'deny root from all',
+'allow root from 10.10.10.1',
+);
