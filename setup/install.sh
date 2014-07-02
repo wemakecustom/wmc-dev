@@ -93,14 +93,8 @@ a2ensite wmc
 sed -i "s/www-data/vagrant/" /etc/apache2/envvars
 chown -R vagrant:vagrant /var/lib/apache2/
 
-[ -d /media/data/projects ] || mkdir /media/data/projects
-chown vagrant: /media/data/projects
-
 [ -e /var/www/wmc ] && rm /var/www/wmc
-ln -sfv /media/data/projects /var/www/wmc
-
-[ -e /home/vagrant/projects ] && rm /home/vagrant/projects
-ln -sfv /media/data/projects /home/vagrant/projects
+ln -sfv /home/vagrant/projects /var/www/wmc
 
 # PEAR
 pear -q upgrade pear
@@ -117,6 +111,3 @@ done
 #Color Promp
 sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/" /home/vagrant/.bashrc
 sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/" /root/.bashrc
-
-#Owner correction
-chown -R vagrant:vagrant /home/vagrant

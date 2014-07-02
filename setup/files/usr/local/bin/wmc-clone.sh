@@ -46,7 +46,7 @@ shared="$(git config --global wmc.shared)"
 
 [[ -z "$email" ]] && email="$(prompt_value "What is your email ?" "$(git config --global user.email)")" && git config --global wmc.email "$email"
 
-[[ -z "$path" ]] && path="$(prompt_value "Where are the projects stored ?" "$HOME/Sites/wmc")" && git config --global wmc.path "$path"
+[[ -z "$path" ]] && path="$(prompt_value "Where are the projects stored ?" "$HOME/projects")" && git config --global wmc.path "$path"
 
 [[ -z "$shared" ]] && shared="$(prompt_value "Where are shared folders stored ?" "$HOME/Google Drive/WMC/03 - Repository")" && git config --global wmc.shared "$shared"
 
