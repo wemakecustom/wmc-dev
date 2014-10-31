@@ -8,7 +8,7 @@ set -e
 ######
 # Preinstall and custom repos
 ######
-apt-get install -y python-software-properties
+apt-get install -y python-software-properties wget
 
 # ElasticSearch
 if [ ! -e /etc/apt/sources.list.d/elasticsearch.list ]; then
@@ -69,32 +69,76 @@ aptitude dist-upgrade -y
 # Install
 ######
 
-cat "/vagrant/setup/packages.list" | xargs aptitude install -y linux-headers-`uname -r`
+aptitude install -y \
+  apache2 \
+  apache2-mpm-worker \
+  aptitude \
+  bash-completion \
+  build-essential \
+  elasticsearch \
+  dnsmasq \
+  gettext \
+  git \
+  htop \
+  imagemagick \
+  libapache2-mod-fastcgi \
+  "linux-headers-$(uname -r)" \
+  mongodb \
+  nodejs \
+  node-uglify \
+  percona-server-server-5.6 \
+  php-{pear,gettext} \
+  php5-composer \
+  php5-{apcu,cli,curl,dev,fpm,gd,gmp,imagick,intl,json,mongo,mcrypt,mysqlnd,readline,recode,sqlite,tidy,xsl} \
+  phpmyadmin \
+  phpunit \
+  siege \
+  subversion \
+  tmux \
+  unrar \
+  unzip \
+  vim \
+  zsh \
 
-npm install -g bower less
+npm install -g bower less uglifycss
+npm update -g
 
-rsync -av "/vagrant/setup/files/" /
+if [[ -d "/vagrant/setup/files" ]]; then
+    rsync -av "/vagrant/setup/files/" /
+else
+    echo "WARNING: You must rsync setup/files/ into / yourself" >&2
+fi
+
+wget -nv https://gist.githubusercontent.com/lavoiesl/6e4de808a291b8665445/raw/php-extras.ini -O /etc/php5/mods-available/extras.ini
+
+wget -nv https://gist.githubusercontent.com/lavoiesl/3867674/raw/wmc-clone.sh -O /usr/local/bin/wmc-clone.sh
+chmod +x /usr/local/bin/wmc-clone.sh
+
+wget -nv https://gist.githubusercontent.com/lavoiesl/2227920/raw/wordpress-change-url.php -O /usr/local/bin/wordpress-change-url.php
+chmod +x /usr/local/bin/wordpress-change-url.php
+
+# wget -nv https://gist.githubusercontent.com/lavoiesl/3864795/raw/gitconfig -O /home/wmc/.gitconfig
+wget -nv https://gist.githubusercontent.com/lavoiesl/3864795/raw/gitignore -O /etc/gitignore
 
 ######
 # Configure
 ######
 
+[ -f "/vagrant/setup/configure-vagrant.sh" ] && bash "/vagrant/setup/configure-vagrant.sh"
+
 # PHP
-for module in extras apcu curl gd gmp imagick intl json mcrypt mysqli mysql mysqlnd pdo pdo_mysql pdo_sqlite readline tidy xsl; do
+for module in extras apcu curl gd gmp imagick intl json mcrypt mongo mysqli mysql mysqlnd pdo pdo_mysql pdo_sqlite readline tidy xsl; do
   php5enmod $module
 done
-sed -i "s/www-data/vagrant/" /etc/php5/fpm/pool.d/www.conf
 
 # Apache
 for module in rewrite alias actions vhost_alias setenvif proxy proxy_http; do
   a2enmod $module
 done
 a2ensite wmc
-sed -i "s/www-data/vagrant/" /etc/apache2/envvars
-chown -R vagrant:vagrant /var/lib/apache2/
 
-[ -e /var/www/wmc ] && rm /var/www/wmc
-ln -sfv /home/vagrant/projects /var/www/wmc
+# MongoDB
+mongo admin --eval 'db.addUser({ user: "wmc", pwd: "wmc", roles: [ "root", "userAdminAnyDatabase" ] })'
 
 # PEAR
 pear -q upgrade pear
@@ -102,12 +146,7 @@ for channel in pear.phpunit.de components.ez.no pear.symfony.com; do
     pear list-channels | grep -qF $channel || pear -q channel-discover $channel
 done
 
-for service in php5-fpm apache2 dnsmasq nfs-kernel-server; do
+for service in php5-fpm apache2 dnsmasq mysql; do
     service $service restart
 done
 
-# wget -nv https://gist.githubusercontent.com/lavoiesl/3864795/raw/gitconfig -O /home/wmc/.gitconfig
-
-#Color Promp
-sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/" /home/vagrant/.bashrc
-sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/" /root/.bashrc

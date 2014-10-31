@@ -29,7 +29,7 @@ confirm() {
 }
 
 if [ ! -e ~/.gitconfig ]; then
-  cp /vagrant/setup/configure/gitconfig ~/.gitconfig
+  wget -nv https://gist.githubusercontent.com/lavoiesl/3864795/raw/gitconfig -O ~/.gitconfig
 fi
 
 fullname="$(prompt_value "What is your full name ?" "$(git config --global user.name)")" && git config --global user.name "$fullname"

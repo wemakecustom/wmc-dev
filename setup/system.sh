@@ -20,3 +20,7 @@ apt-get install -y vim git
 apt-get install -y linux-headers-$(uname -r)
 apt-get install -y virtualbox vagrant
 
+vagrant plugin install vagrant-persistent-storage
+vagrant plugin install vagrant-nfs_guest
+
+mkdir projects

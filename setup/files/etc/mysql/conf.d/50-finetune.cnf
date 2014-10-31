@@ -1,0 +1,8 @@
+[mysqld]
+innodb_buffer_pool_size = 300M
+join_buffer_size = 2M
+max_connection = 50
+query_cache_limit = 1M
+query_cache_size = 100M
+query_cache_type = 1
+table_open_cache = 24K
