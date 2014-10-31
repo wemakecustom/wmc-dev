@@ -1,16 +1,30 @@
-WeMakeCustom Vagrant
+WeMakeCustom Dev Environment
 ===========================================
 
 
 ## Installation
 
+ 1. `git clone git@github.com:wemakecustom/wmc-dev.git ~/Sites/wmc`
+ 2. `cd ~/Sites/wmc`
+ 3. `mkdir projects`
+
+### Using Vagrant
+
  1. Activate in your Bios/EFI if not Intel vt/Amd-v 
- 2. `git clone git@github.com:wemakecustom/vagrant-dev.git ~/Sites/wmc`
- 3. `cd ~/Sites/wmc`
- 4. `sudo ./setup/system.sh`
- 5. `vagrant up`
- 6. Move your projects in the projects folder, [respecting the hierarchy](#projects-hierarchy).
- 7. On the vagrant, run the configure script to personalize: `/vagrant/setup/configure.sh`.
+ 2. `sudo ./setup/vagrant-host.sh`
+ 3. `vagrant up`
+
+### Using native Linux
+
+ 1. `sudo -av rsync -av setup/files/ /`
+ 2. `sudo ./setup/install.sh`
+ 3. `sudo ln -sv ~/Sites/wmc/projects /var/www/wmc`
+ 3. More infos coming soon.
+
+And:
+
+ 1. Move your projects in the projects folder, [respecting the hierarchy](#projects-hierarchy).
+ 2. On the vagrant, run the configure script to personalize: `/vagrant/setup/configure.sh`.
 
 ## Projects hierarchy
 

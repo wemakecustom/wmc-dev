@@ -124,7 +124,7 @@ wget -nv https://gist.githubusercontent.com/lavoiesl/3864795/raw/gitignore -O /e
 # Configure
 ######
 
-[ -f "/vagrant/setup/configure-vagrant.sh" ] && bash "/vagrant/setup/configure-vagrant.sh"
+[ -f "/vagrant/setup/vagrant-guest.sh" ] && bash "/vagrant/setup/vagrant-guest.sh"
 
 # PHP
 for module in extras apcu curl gd gmp imagick intl json mcrypt mongo mysqli mysql mysqlnd pdo pdo_mysql pdo_sqlite readline tidy xsl; do
