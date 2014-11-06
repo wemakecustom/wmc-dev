@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
 
   config.persistent_storage.enabled = true
   config.persistent_storage.location = "data.vdi"
-  config.persistent_storage.size = 5000
+  config.persistent_storage.size = 51200
   config.persistent_storage.mountname = 'data'
   config.persistent_storage.filesystem = 'ext4'
   config.persistent_storage.mountpoint = '/media/data'
