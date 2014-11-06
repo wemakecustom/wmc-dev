@@ -33,6 +33,10 @@ fi
 # NodeJs
 [ -e "/etc/apt/sources.list.d/chris-lea-node_js-$(lsb_release -cs).list" ] || add-apt-repository -y ppa:chris-lea/node.js
 
+# Git
+[ -e "/etc/apt/sources.list.d/git-core-ppa-$(lsb_release -cs).list" ] || add-apt-repository -y ppa:git-core/ppa
+
+
 # Percona
 if [ ! -e /etc/apt/sources.list.d/percona.list ]; then
     apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
@@ -149,7 +153,7 @@ a2ensite wmc
 ln -sv "${HOME}/wmc-projects" /var/www/wmc
 
 # MongoDB
-mongo admin --eval 'db.addUser({ user: "wmc", pwd: "wmc", roles: [ "root", "userAdminAnyDatabase" ] })'
+mongo admin --eval 'db.removeUser("vagrant"); db.addUser({ user: "vagrant", pwd: "vagrant", roles: [ "root", "userAdminAnyDatabase" ] })'
 
 # PEAR
 pear -q upgrade pear
