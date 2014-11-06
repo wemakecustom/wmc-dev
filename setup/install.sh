@@ -37,7 +37,7 @@ fi
 [ -e "/etc/apt/sources.list.d/git-core-ppa-$(lsb_release -cs).list" ] || add-apt-repository -y ppa:git-core/ppa
 
 # Mongo
-if [ ! -e /etc/apt/sources.list.d/elasticsearch.list ]; then
+if [ ! -e /etc/apt/sources.list.d/mongodb.list ]; then
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
     echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list
 fi
