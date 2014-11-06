@@ -6,9 +6,7 @@ chown -R vagrant:vagrant /var/lib/apache2/
 
 [ -d /media/data/projects ] || mkdir /media/data/projects
 chown vagrant: /media/data/projects
-[ -L /home/vagrant/projects ] || ln -sv /media/data/projects /home/vagrant/projects
-[ -e /var/www/wmc ] && rm /var/www/wmc
-ln -sv /media/data/projects /var/www/wmc
+[ -L ~/wmc-projects ] || ln -sv /media/data/projects ~/wmc-projects
 
 if [ ! -L /var/lib/mysql ]; then
     mv /var/lib/mysql /media/data/

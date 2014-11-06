@@ -4,6 +4,14 @@
 # http://www.davidpashley.com/articles/writing-robust-shell-scripts/#id2382181
 set -e
 
+export DEBIAN_FRONTEND=noninteractive
+
+if [[ -d "/home/vagrant" ]]; then
+  export HOME="/home/vagrant"
+fi
+
+echo "America/Montreal" > /etc/timezone
+dpkg-reconfigure tzdata
 
 ######
 # Preinstall and custom repos
@@ -136,6 +144,9 @@ for module in rewrite alias actions vhost_alias setenvif proxy proxy_http; do
   a2enmod $module
 done
 a2ensite wmc
+
+[ -e /var/www/wmc ] && rm /var/www/wmc
+ln -sv "${HOME}/wmc-projects" /var/www/wmc
 
 # MongoDB
 mongo admin --eval 'db.addUser({ user: "wmc", pwd: "wmc", roles: [ "root", "userAdminAnyDatabase" ] })'

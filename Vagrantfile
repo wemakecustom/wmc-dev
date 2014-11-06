@@ -27,7 +27,10 @@ Vagrant.configure("2") do |config|
 
   config.ssh.forward_agent = true
 
+  config.vm.synced_folder 'home', '/home/vagrant', type: 'nfs_guest'
   config.vm.synced_folder 'projects', '/media/data/projects', type: 'nfs_guest'
+  config.vm.synced_folder '~', '/media/home', type: 'nfs'
+  config.vm.synced_folder '~/Google Drive/WMC - Repository', '/home/vagrant/wmc-repository', type: 'nfs'
 
   config.vm.network :private_network, ip: "10.10.10.10"
   config.vm.network :public_network

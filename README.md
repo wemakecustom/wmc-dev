@@ -6,7 +6,8 @@ WeMakeCustom Dev Environment
 
  1. `git clone git@github.com:wemakecustom/wmc-dev.git ~/Sites/wmc`
  2. `cd ~/Sites/wmc`
- 3. `mkdir projects`
+ 3. `mkdir projects` (Vagrant /media/data/projects directory will be mounted there)
+ 3. `mkdir home` (Vagrant home directory will be mounted there)
 
 ### Using Vagrant
 
@@ -18,7 +19,7 @@ WeMakeCustom Dev Environment
 
  1. `sudo -av rsync -av setup/files/ /`
  2. `sudo ./setup/install.sh`
- 3. `sudo ln -sv ~/Sites/wmc/projects /var/www/wmc`
+ 3. `sudo ln -sv ~/Sites/wmc/projects ~/wmc-projects`
  3. More infos coming soon.
 
 And:
@@ -35,7 +36,7 @@ The file structure is `./projects/CLIENT/PROJECT` and it translates to http://PR
 Vagrant will create a disk in `./data.vdi` and mount it on `/media/data`.
 This disk will survive even if the VM is destroyed.
 
-All your projects will be stored in `/media/data/projects`, symlinked to `/var/www/wmc` and exported via NFS.
+All your projects will be stored in `/media/data/projects`, symlinked to `~/wmc-projects`, in turn symlinked to `/var/www/wmc` and exported via NFS.
 Vagrant will also mount it in `./projects` so you can access it locally.
 
 ## MySQL & phpMyAdmin
