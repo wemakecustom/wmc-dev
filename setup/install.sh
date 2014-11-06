@@ -36,6 +36,11 @@ fi
 # Git
 [ -e "/etc/apt/sources.list.d/git-core-ppa-$(lsb_release -cs).list" ] || add-apt-repository -y ppa:git-core/ppa
 
+# Mongo
+if [ ! -e /etc/apt/sources.list.d/elasticsearch.list ]; then
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+    echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list
+fi
 
 # Percona
 if [ ! -e /etc/apt/sources.list.d/percona.list ]; then
@@ -95,7 +100,7 @@ aptitude install -y \
   imagemagick \
   libapache2-mod-fastcgi \
   "linux-headers-$(uname -r)" \
-  mongodb \
+  mongodb-org \
   nodejs \
   node-uglify \
   percona-server-server-5.6 \
@@ -153,7 +158,7 @@ a2ensite wmc
 ln -sv "${HOME}/wmc-projects" /var/www/wmc
 
 # MongoDB
-mongo admin --eval 'db.removeUser("vagrant"); db.addUser({ user: "vagrant", pwd: "vagrant", roles: [ "root", "userAdminAnyDatabase" ] })'
+mongo admin --eval 'db.dropUser("wmc"); db.createUser({user: "wmc", pwd: "wmc", roles:[{role: "userAdminAnyDatabase", db: "admin"}]})'
 
 # PEAR
 pear -q upgrade pear
