@@ -17,7 +17,7 @@ WeMakeCustom Dev Environment
 
 ### Using native Linux
 
- 1. `sudo -av rsync -av setup/files/ /`
+ 1. `sudo rsync -av setup/files/ /`
  2. `sudo ./setup/install.sh`
  3. `sudo ln -sv ~/Sites/wmc/projects ~/wmc-projects`
  3. More infos coming soon.
