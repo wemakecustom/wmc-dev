@@ -17,10 +17,14 @@ WeMakeCustom Dev Environment
 
 ### Using native Linux
 
- 1. `sudo rsync -av setup/files/ /`
- 2. `sudo ./setup/install.sh`
- 3. `ln -sv "${HOME}/Sites/wmc/projects" "${HOME}/wmc-projects"`
- 4. `ln -sv "${HOME}/Google Drive/WMC - Repository" "${HOME}/wmc-repository"`
+ 1. Change hostname (optional)
+   1. `echo 'dev.wemakecustom.com' | sudo tee /etc/hostname`
+   2. `sudo nano /etc/hosts` (Replace ubuntu or whatever hostname by `dev dev.wemakecustom.com`)
+   3. `sudo hostname -F /etc/hostname`
+ 2. `sudo rsync -av setup/files/ /`
+ 3. `sudo ./setup/install.sh`
+ 4. `ln -sv "${HOME}/Sites/wmc/projects" "${HOME}/wmc-projects"`
+ 5. `ln -sv "${HOME}/Google Drive/WMC - Repository" "${HOME}/wmc-repository"`
 
 ## Final configuration
 
