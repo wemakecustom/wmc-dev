@@ -97,10 +97,12 @@ aptitude install -y \
   gettext \
   git \
   htop \
+  iftop \
   imagemagick \
   libapache2-mod-fastcgi \
   "linux-headers-$(uname -r)" \
   mongodb-org \
+  mytop \
   nodejs \
   node-uglify \
   percona-server-server-5.6 \
