@@ -18,8 +18,8 @@ WeMakeCustom Dev Environment
 ### Using native Linux
 
  1. Change hostname (optional)
-   1. `echo 'dev.wemakecustom.com' | sudo tee /etc/hostname`
-   2. `sudo nano /etc/hosts` (Replace ubuntu or whatever hostname by `dev dev.wemakecustom.com`)
+   1. `echo 'dev' | sudo tee /etc/hostname`
+   2. `sudo nano /etc/hosts` (Replace ubuntu or whatever hostname by `dev.wemakecustom.com dev`)
    3. `sudo hostname -F /etc/hostname`
  2. `sudo rsync -av setup/files/ /`
  3. `sudo ./setup/install.sh`
