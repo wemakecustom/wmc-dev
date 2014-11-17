@@ -31,7 +31,7 @@ WeMakeCustom Dev Environment
 
  1. Move your projects in the projects folder, [respecting the hierarchy](#projects-hierarchy).
  2. Install LastPass: `setup/install-lastpass.sh`
- 3. On the vagrant, run the configure script to personalize: `/vagrant/setup/configure.sh`.
+ 3. Run the configure script ([`setup/configure.sh`](setup/configure.sh)) to personalize. On Vagrant: `/vagrant/setup/configure.sh`.
 
 ## Other information
 
