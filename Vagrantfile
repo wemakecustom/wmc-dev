@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder '~/Google Drive/WMC - Repository', '/home/vagrant/wmc-repository', type: 'nfs'
 
   config.vm.network :private_network, ip: "10.10.10.10"
-  config.vm.network :public_network, bridge: "en0: Wi-Fi (AirPort)"
+  # config.vm.network :public_network
 
   config.vm.provision :shell, :path => "setup/install.sh"
   config.vm.provision :shell, :path => "setup/install-lastpass.sh"
