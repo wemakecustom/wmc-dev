@@ -7,4 +7,5 @@ $cfg['Servers'][$i]['AllowDeny']['order'] = 'deny,allow';
 $cfg['Servers'][$i]['AllowDeny']['rules'] = array(
 'deny root from all',
 'allow root from 10.10.10.1',
+'allow root from 127.0.0.1',
 );
