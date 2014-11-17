@@ -9,6 +9,11 @@ chown vagrant: /media/data/projects
 [ -L ~/wmc-projects ] || ln -sv /media/data/projects ~/wmc-projects
 
 if [ ! -L /var/lib/mysql ]; then
-    mv /var/lib/mysql /media/data/
+    if [ -d /media/data/mysql ]; then
+        mv /var/lib/mysql /media/data/
+    else
+        rm -R /var/lib/mysql
+    fi
+
     ln -sv /media/data/mysql /var/lib/
 fi
