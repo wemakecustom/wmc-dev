@@ -19,39 +19,39 @@ WeMakeCustom Dev Environment
 
  1. `sudo rsync -av setup/files/ /`
  2. `sudo ./setup/install.sh`
- 3. `sudo ln -sv ~/Sites/wmc/projects ~/wmc-projects`
- 3. More infos coming soon.
+ 3. `ln -sv "${HOME}/Sites/wmc/projects" "${HOME}/wmc-projects"`
+ 4. `ln -sv "${HOME}/Google Drive/WMC - Repository" "${HOME}/wmc-repository"`
 
-And:
+## Final configuration
 
  1. Move your projects in the projects folder, [respecting the hierarchy](#projects-hierarchy).
- 2. On the vagrant, run the configure script to personalize: `/vagrant/setup/configure.sh`.
+ 2. Install LastPass: `setup/install-lastpass.sh`
+ 3. On the vagrant, run the configure script to personalize: `/vagrant/setup/configure.sh`.
 
-## Projects hierarchy
+## Other information
 
-The file structure is `./projects/CLIENT/PROJECT` and it translates to http://PROJECT.CLIENT.dev.wemakecustom.com/
+### Networking
 
-## Project files via NFS
+[setup/files/etc/apache2/sites-available/wmc.conf](Apache is configured) to use dev.wemakecustom.com as host.
 
-Vagrant will create a disk in `./data.vdi` and mount it on `/media/data`.
-This disk will survive even if the VM is destroyed.
+Your [Vagrantfile](Vagrant has a private IP) of `10.10.10.10`.
+A public DNS pointing `*.dev.wemakecustom.com` to it already exists.
+You may add a public network so your Vagrant will appear on the network, but this is a security risk.
 
-All your projects will be stored in `/media/data/projects`, symlinked to `~/wmc-projects`, in turn symlinked to `/var/www/wmc` and exported via NFS.
-Vagrant will also mount it in `./projects` so you can access it locally.
+[DNSmasq is configured](setup/files/etc/dnsmasq.d/wmc) so `*.dev.wemakecustom.com` points to `127.0.0.1`
 
-## MySQL & phpMyAdmin
-    http://dev.wemakecustom.com/phpmyadmin/
-    Login : root
-    Password : root
+### Common vagrant commands
 
-## Using your Vagrant
+Useful commands:
 
     vagrant help          Get help
     vagrant up            Starts and provisions the vagrant environment
     vagrant halt          Stops the vagrant machine
     vagrant ssh           Connects to machine via SSH
 
-## SSH config
+If your Vagrant does not boot, try uncommenting `virtualbox.gui = true` to see the console.
+
+### SSH config
 
 Instead of using `vagrant ssh` you may add an alias on your local machine:
 
@@ -60,3 +60,28 @@ vagrant ssh-config --host wmc-dev >> ~/.ssh/config
 ```
 
 And then, you may simply `ssh wmc-dev`.
+
+### Projects hierarchy
+
+The file structure is `./projects/CLIENT/PROJECT` and it translates to http://PROJECT.CLIENT.dev.wemakecustom.com/
+
+Going to http://list.dev.wemakecustom.com/ will provide a list of existing clients/projects.
+
+### Project files via NFS
+
+Vagrant will create a disk in `./data.vdi` and mount it on `/media/data`.
+This data will survive even if the VM is destroyed.
+
+All your projects will be stored in `/media/data/projects`, symlinked to `~/wmc-projects`, in turn symlinked to `/var/www/wmc` and exported via NFS.
+Vagrant will also mount it in `./projects` so you can access it locally.
+
+`~/Google Drive/WMC - Repository` is symlinked (or shared via NFS) to `~/wmc-projects`, this is the shared assets
+
+### MySQL & phpMyAdmin
+
+    User : root
+    Password : root
+    http://dev.wemakecustom.com/phpmyadmin/ (Vagrant host autologins)
+
+MySQL data is stored on /media/data/mysql.
+This data will survive even if the VM is destroyed.
