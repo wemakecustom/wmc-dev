@@ -5,8 +5,7 @@
 # vagrant plugin install vagrant-nfs_guest
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "trusty32"  #Box Name
-  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box" #Box Location
+  config.vm.box = "ubuntu/trusty64"  #Box Name
   config.vm.hostname = 'dev.wemakecustom.com'
 
   config.vm.provider :virtualbox do |virtualbox|
