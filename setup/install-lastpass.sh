@@ -1,7 +1,9 @@
 #!/bin/bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 if [ ! -x /usr/bin/lpass ]; then
-    sudo aptitude install openssl libcurl4-openssl-dev libxml2 libssl-dev libxml2-dev pinentry-curses
+    sudo aptitude -y install openssl libcurl4-openssl-dev libxml2 libssl-dev libxml2-dev pinentry-curses
 
     tmp="$(mktemp -d)"
 
