@@ -36,6 +36,12 @@ fi
 # Git
 [ -e "/etc/apt/sources.list.d/git-core-ppa-$(lsb_release -cs).list" ] || add-apt-repository -y ppa:git-core/ppa
 
+# HHVM
+if [ ! -e /etc/apt/sources.list.d/hhvm.list ]; then
+    wget -nv -O - http://dl.hhvm.com/conf/hhvm.gpg.key | apt-key add -
+    echo "deb http://dl.hhvm.com/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/hhvm.list
+fi
+
 # Mongo
 if [ ! -e /etc/apt/sources.list.d/mongodb.list ]; then
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
@@ -96,6 +102,7 @@ aptitude install -y \
   dnsmasq \
   gettext \
   git \
+  hhvm \
   htop \
   iftop \
   imagemagick \
@@ -168,7 +175,10 @@ for channel in pear.phpunit.de components.ez.no pear.symfony.com; do
     pear list-channels | grep -qF $channel || pear -q channel-discover $channel
 done
 
+apt-get autoremove -y
+apt-get clean
+rm -rf /tmp/* /var/tmp/*
+
 for service in php5-fpm apache2 dnsmasq mysql; do
     service $service restart
 done
-
