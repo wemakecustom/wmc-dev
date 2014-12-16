@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# vagrant plugin install vagrant-persistent-storage
+# vagrant plugin install vagrant-nfs_guest
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/trusty64"  #Box Name
+  config.vm.hostname = 'selenium.wemakecustom.com'
+
+  config.vm.provider :virtualbox do |virtualbox|
+    # virtualbox.gui = true  # Uncomment to start the VM with the GUI
+    virtualbox.name = "wmc-selenium"
+    virtualbox.customize ["modifyvm", :id, "--ioapic", "on"]
+    virtualbox.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    virtualbox.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    virtualbox.memory = 2048
+    virtualbox.cpus = 2
+  end
+
+  config.ssh.forward_agent = true
+
+  config.vm.network :private_network, ip: "10.10.10.11"
+
+  config.vm.network :forwarded_port, guest:4444, host:4444
+
+  config.vm.provision :shell, :path => "install.sh"
+  config.vm.provision :shell, :path => "boot.sh", :run => "always"
+end
