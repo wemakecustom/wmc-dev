@@ -1,4 +1,4 @@
-.vagrant
-data.vdi
-home/
-projects/
+/.vagrant
+/data.vdi
+/home/
+/projects/

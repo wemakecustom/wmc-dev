@@ -6,7 +6,7 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
-if [[ -d "/home/vagrant" ]]; then
+if [[ -d "/vagrant" ]]; then
   export HOME="/home/vagrant"
 fi
 
@@ -131,6 +131,7 @@ npm update -g
 
 if [[ -d "/vagrant/setup/files" ]]; then
     rsync -av "/vagrant/setup/files/" /
+    rsync -av "/vagrant/setup/home/" "${HOME}/"
 else
     echo "WARNING: You must rsync setup/files/ into / yourself" >&2
 fi

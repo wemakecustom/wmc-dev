@@ -22,10 +22,11 @@ WeMakeCustom Dev Environment
    2. `sudo nano /etc/hosts` (Replace ubuntu or whatever hostname by `dev.wemakecustom.com dev`)
    3. `sudo hostname -F /etc/hostname`
  2. `sudo rsync -av setup/files/ /`
- 3. `sudo ./setup/install.sh`
- 4. `sudo ./setup/install-native-ubuntu.sh`
- 5. `ln -sv "${HOME}/Sites/wmc/projects" "${HOME}/wmc-projects"` (`~/wmc-projects` must NOT exists)
- 6. `ln -sv "${HOME}/Google Drive/WMC - Repository" "${HOME}/wmc-repository"` (`~/wmc-repository` must NOT exists)
+ 3. `sudo rsync -av setup/home/ "${HOME}/"`
+ 4. `sudo ./setup/install.sh`
+ 5. `sudo ./setup/install-native-ubuntu.sh`
+ 6. `ln -sv "${HOME}/Sites/wmc/projects" "${HOME}/wmc-projects"` (`~/wmc-projects` must NOT exists)
+ 7. `ln -sv "${HOME}/Google Drive/WMC - Repository" "${HOME}/wmc-repository"` (`~/wmc-repository` must NOT exists)
 
 ## Final configuration
 
