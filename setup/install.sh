@@ -36,6 +36,12 @@ fi
 # Git
 [ -e "/etc/apt/sources.list.d/git-core-ppa-$(lsb_release -cs).list" ] || add-apt-repository -y ppa:git-core/ppa
 
+# HHVM
+if [ ! -e /etc/apt/sources.list.d/hhvm.list ]; then
+    wget -nv -O - http://dl.hhvm.com/conf/hhvm.gpg.key | apt-key add -
+    echo "deb http://dl.hhvm.com/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/hhvm.list
+fi
+
 # Mongo
 if [ ! -e /etc/apt/sources.list.d/mongodb.list ]; then
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
